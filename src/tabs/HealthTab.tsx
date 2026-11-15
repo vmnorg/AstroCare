@@ -47,37 +47,37 @@ export default function HealthTab() {
   }
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-6 sm:space-y-8 max-w-7xl mx-auto">
       {/* Top Banner: Smart Environment Alert (NASA Metric: ppCO2 > 4.0 mmHg is Alert) */}
       {ppCO2 > 4.0 && (
-        <div className="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-lg shadow-amber-950/20">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-amber-500/20 rounded-xl text-amber-400 mt-1 flex-shrink-0">
-              <AlertTriangle className="w-6 h-6" />
+        <div className="p-4 sm:p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 shadow-lg shadow-amber-950/20">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="p-2.5 sm:p-3 bg-amber-500/20 rounded-xl text-amber-400 mt-0.5 sm:mt-1 flex-shrink-0">
+              <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2.5">
-                <span className="text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/25 text-amber-300 uppercase tracking-wider">
+            <div className="space-y-1 sm:space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 rounded bg-amber-500/25 text-amber-300 uppercase tracking-wider">
                   Cabin Life Support Advisory
                 </span>
-                <span className="text-xs text-gray-400 font-mono">Loop Sensor #04</span>
+                <span className="text-[10px] sm:text-xs text-gray-400 font-mono">Sensor #04</span>
               </div>
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
                 Cabin ppCO₂ Elevated ({ppCO2} mmHg) — Cognitive Fatigue & Headache Risk
               </h3>
-              <p className="text-sm text-gray-300 max-w-3xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-300 max-w-3xl leading-relaxed">
                 Nominal spacecraft atmosphere is &lt; 3.0 mmHg (Alert threshold &gt; 4.0 mmHg). Elevated ppCO₂ on Sol 412 correlates with REM sleep fragmentation and impaired crew performance.
               </p>
               <div className="pt-1 flex items-center gap-4 text-xs font-medium text-amber-400">
                 <span className="flex items-center gap-1.5">
-                  <Wind className="w-4 h-4" /> Recommended Action: Increase Hab CO₂ Scrubber draw rate to 140%
+                  <Wind className="w-4 h-4 flex-shrink-0" /> Recommended: Increase Hab CO₂ Scrubber to 140%
                 </span>
               </div>
             </div>
           </div>
           <button 
             onClick={handleBoostAirflow}
-            className="px-5 py-3 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded-xl transition-all whitespace-nowrap shadow-md shadow-amber-900/30 self-start md:self-center flex items-center gap-2 cursor-pointer"
+            className="w-full md:w-auto px-5 py-3 bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold rounded-xl transition-all whitespace-nowrap shadow-md shadow-amber-900/30 flex items-center justify-center gap-2 cursor-pointer"
           >
             <Wind className="w-4 h-4" />
             Boost Airflow
@@ -86,22 +86,22 @@ export default function HealthTab() {
       )}
 
       {/* Row 1: Interactive Body Map + Organ Details + ARED Exercise Tracker */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
         {/* Interactive 2D Body Silhouette */}
-        <div className="lg:col-span-5 bg-[#131820] border border-[#1F2937] rounded-2xl p-6 flex flex-col justify-between">
-          <div className="flex items-center justify-between mb-4">
+        <div className="lg:col-span-5 bg-[#131820] border border-[#1F2937] rounded-2xl p-4 sm:p-6 flex flex-col justify-between">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Biometric Sensor Telemetry</span>
-              <h2 className="text-xl font-bold text-white mt-0.5">{commander.name}</h2>
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400">Biometric Sensor Telemetry</span>
+              <h2 className="text-lg sm:text-xl font-bold text-white mt-0.5">{commander.name}</h2>
             </div>
-            <span className="text-xs px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold font-mono">
-              0.38g Mars Bio-Lock
+            <span className="text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold font-mono">
+              0.38g Bio-Lock
             </span>
           </div>
 
-          <div className="flex-1 flex flex-col sm:flex-row items-center gap-6 justify-center py-4">
+          <div className="flex-1 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center py-2 sm:py-4">
             {/* SVG Silhouette with interactive targets */}
-            <div className="relative w-44 h-80 flex items-center justify-center">
+            <div className="relative w-40 sm:w-44 h-72 sm:h-80 flex items-center justify-center flex-shrink-0">
               <svg viewBox="0 0 200 400" className="w-full h-full drop-shadow-md">
                 {/* Silhouette background */}
                 <path 
@@ -156,180 +156,180 @@ export default function HealthTab() {
               </svg>
             </div>
 
-            {/* Region Selector Buttons */}
-            <div className="flex flex-col gap-3 w-full sm:w-48">
+            {/* Region Selector Buttons (Mobile: 3-column tabs, Desktop: vertical stack) */}
+            <div className="grid grid-cols-3 sm:grid-cols-1 gap-2 sm:gap-3 w-full sm:w-48">
               <button 
                 onClick={() => setBodyRegion('head')}
-                className={`p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
+                className={`p-2.5 sm:p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
                   selectedRegion === 'head' 
                     ? 'bg-blue-500/20 border-blue-500/60 text-blue-300 shadow-md shadow-blue-950/30' 
                     : 'bg-[#18202C] border-[#1F2937] text-gray-400 hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-2.5">
+                <div className="flex flex-col sm:flex-row items-center sm:gap-2.5 gap-1 text-center sm:text-left w-full sm:w-auto">
                   <Brain className="w-4 h-4 text-blue-400" />
-                  <span>Head & Sleep</span>
+                  <span className="truncate">Head</span>
                 </div>
-                <ChevronRight className="w-4 h-4 text-gray-500" />
+                <ChevronRight className="w-4 h-4 text-gray-500 hidden sm:block" />
               </button>
 
               <button 
                 onClick={() => setBodyRegion('heart')}
-                className={`p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
+                className={`p-2.5 sm:p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
                   selectedRegion === 'heart' 
                     ? 'bg-red-500/20 border-red-500/60 text-red-300 shadow-md shadow-red-950/30' 
                     : 'bg-[#18202C] border-[#1F2937] text-gray-400 hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-2.5">
+                <div className="flex flex-col sm:flex-row items-center sm:gap-2.5 gap-1 text-center sm:text-left w-full sm:w-auto">
                   <Heart className="w-4 h-4 text-red-400" />
-                  <span>Cardiovascular</span>
+                  <span className="truncate">Heart</span>
                 </div>
-                <ChevronRight className="w-4 h-4 text-gray-500" />
+                <ChevronRight className="w-4 h-4 text-gray-500 hidden sm:block" />
               </button>
 
               <button 
                 onClick={() => setBodyRegion('bones')}
-                className={`p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
+                className={`p-2.5 sm:p-3 rounded-xl text-left text-xs font-semibold flex items-center justify-between border transition-all cursor-pointer ${
                   selectedRegion === 'bones' 
                     ? 'bg-amber-500/20 border-amber-500/60 text-amber-300 shadow-md shadow-amber-950/30' 
                     : 'bg-[#18202C] border-[#1F2937] text-gray-400 hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-2.5">
+                <div className="flex flex-col sm:flex-row items-center sm:gap-2.5 gap-1 text-center sm:text-left w-full sm:w-auto">
                   <Activity className="w-4 h-4 text-amber-400" />
-                  <span>Bones & 0.38g</span>
+                  <span className="truncate">Bones</span>
                 </div>
-                <ChevronRight className="w-4 h-4 text-gray-500" />
+                <ChevronRight className="w-4 h-4 text-gray-500 hidden sm:block" />
               </button>
 
-              <div className="p-3 bg-[#18202C] rounded-xl border border-[#1F2937] text-[11px] text-gray-400 leading-normal">
-                Click any organ node to focus telemetry and check physiological adaptations.
+              <div className="col-span-3 sm:col-span-1 p-2 sm:p-3 bg-[#18202C] rounded-xl border border-[#1F2937] text-[10px] sm:text-[11px] text-gray-400 leading-normal text-center sm:text-left">
+                Tap organ nodes to view 0.38g adaptations.
               </div>
             </div>
           </div>
         </div>
 
         {/* Selected Region Telemetry Breakdown + ARED */}
-        <div className="lg:col-span-7 flex flex-col gap-8">
-          <div className="bg-[#131820] border border-[#1F2937] rounded-2xl p-6 flex-1 flex flex-col justify-between">
+        <div className="lg:col-span-7 flex flex-col gap-6 sm:gap-8">
+          <div className="bg-[#131820] border border-[#1F2937] rounded-2xl p-4 sm:p-6 flex-1 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-5">
-                <span className="text-xs font-bold uppercase tracking-wider text-gray-400">
+              <div className="flex items-center justify-between mb-4 sm:mb-5">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400">
                   {selectedRegion === 'head' && 'Cranial & Circadian Diagnostics'}
                   {selectedRegion === 'heart' && 'Cardiovascular & Vital Signs'}
-                  {selectedRegion === 'bones' && 'Musculoskeletal & 0.38g Gravity Impact'}
+                  {selectedRegion === 'bones' && 'Musculoskeletal & 0.38g Impact'}
                 </span>
-                <span className="text-xs text-gray-500 font-mono">Live Telemetry Link</span>
+                <span className="text-[10px] sm:text-xs text-gray-500 font-mono">Live Telemetry</span>
               </div>
 
               {selectedRegion === 'head' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Last Sol Sleep</span>
-                      <div className="text-3xl font-black font-mono text-white mt-1 tabular-nums">
-                        {commander.sleepHours} <span className="text-sm font-normal text-gray-400">hrs</span>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="p-3 sm:p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[11px] sm:text-xs text-gray-400 font-medium">Last Sol Sleep</span>
+                      <div className="text-2xl sm:text-3xl font-black font-mono text-white mt-1 tabular-nums">
+                        {commander.sleepHours} <span className="text-xs sm:text-sm font-normal text-gray-400">hrs</span>
                       </div>
-                      <p className="text-xs text-amber-400 mt-1 font-medium">Target: 8.0h (Circadian lag)</p>
+                      <p className="text-[10px] sm:text-xs text-amber-400 mt-1 font-medium">Target: 8.0h (Circadian lag)</p>
                     </div>
-                    <div className="p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Circadian Drift (39m Sol)</span>
-                      <div className="text-3xl font-black font-mono text-white mt-1 tabular-nums">
-                        +{commander.circadianDrift} <span className="text-sm font-normal text-gray-400">min/sol</span>
+                    <div className="p-3 sm:p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[11px] sm:text-xs text-gray-400 font-medium">Circadian Drift (39m Sol)</span>
+                      <div className="text-2xl sm:text-3xl font-black font-mono text-white mt-1 tabular-nums">
+                        +{commander.circadianDrift} <span className="text-xs sm:text-sm font-normal text-gray-400">min</span>
                       </div>
-                      <p className="text-xs text-emerald-400 mt-1 font-medium">Light therapy aligned</p>
+                      <p className="text-[10px] sm:text-xs text-emerald-400 mt-1 font-medium">Light therapy aligned</p>
                     </div>
                   </div>
-                  <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl text-xs text-blue-300 leading-relaxed">
-                    💡 <strong>NASA Protocol Note:</strong> The Mars 24h 39m 35s day causes natural circadian desynchronosis. Scheduled light visor suppression active for Sol 412.
+                  <div className="p-3 sm:p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl text-xs text-blue-300 leading-relaxed">
+                    💡 <strong>NASA Protocol:</strong> Mars 24h 39m 35s diurnal cycle induces circadian desynchronosis. Scheduled light visor suppression active.
                   </div>
                 </div>
               )}
 
               {selectedRegion === 'heart' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div className="p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Resting HR</span>
-                      <div className="text-2xl font-black font-mono text-emerald-400 mt-1 tabular-nums">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
+                    <div className="p-3 sm:p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[10px] sm:text-xs text-gray-400 font-medium">Resting HR</span>
+                      <div className="text-xl sm:text-2xl font-black font-mono text-emerald-400 mt-1 tabular-nums">
                         {commander.hr} <span className="text-xs text-gray-400 font-normal">bpm</span>
                       </div>
-                      <span className="text-[11px] text-emerald-400/80">Nominal 60-85</span>
+                      <span className="text-[10px] text-emerald-400/80">Nominal 60-85</span>
                     </div>
 
-                    <div className="p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Blood Oxygen</span>
-                      <div className="text-2xl font-black font-mono text-emerald-400 mt-1 tabular-nums">
+                    <div className="p-3 sm:p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[10px] sm:text-xs text-gray-400 font-medium">Blood Oxygen</span>
+                      <div className="text-xl sm:text-2xl font-black font-mono text-emerald-400 mt-1 tabular-nums">
                         {commander.spo2}%
                       </div>
-                      <span className="text-[11px] text-emerald-400/80">SpO₂ &gt; 95%</span>
+                      <span className="text-[10px] text-emerald-400/80">SpO₂ &gt; 95%</span>
                     </div>
 
-                    <div className="p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Blood Pressure</span>
-                      <div className="text-2xl font-black font-mono text-white mt-1 tabular-nums">
+                    <div className="p-3 sm:p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[10px] sm:text-xs text-gray-400 font-medium">Blood Pressure</span>
+                      <div className="text-xl sm:text-2xl font-black font-mono text-white mt-1 tabular-nums">
                         {commander.bp}
                       </div>
-                      <span className="text-[11px] text-gray-400">Optimal mmHg</span>
+                      <span className="text-[10px] text-gray-400">Optimal mmHg</span>
                     </div>
 
-                    <div className="p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Core Temp</span>
-                      <div className="text-2xl font-black font-mono text-white mt-1 tabular-nums">
+                    <div className="p-3 sm:p-3.5 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[10px] sm:text-xs text-gray-400 font-medium">Core Temp</span>
+                      <div className="text-xl sm:text-2xl font-black font-mono text-white mt-1 tabular-nums">
                         {commander.temp}°C
                       </div>
-                      <span className="text-[11px] text-gray-400">36.5 - 37.5°C</span>
+                      <span className="text-[10px] text-gray-400">36.5 - 37.5°C</span>
                     </div>
                   </div>
-                  <div className="p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 leading-relaxed">
-                    ✓ <strong>Cardiovascular Status:</strong> All hemodynamics within standard flight limits for long-duration Martian stay. No ectopic beats observed.
+                  <div className="p-3 sm:p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 leading-relaxed">
+                    ✓ <strong>Cardiovascular Status:</strong> All hemodynamics within flight limits for long-duration Martian stay. No ectopic beats observed.
                   </div>
                 </div>
               )}
 
               {selectedRegion === 'bones' && (
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Bone Mineral Density Loss</span>
-                      <div className="text-3xl font-black font-mono text-amber-400 mt-1 tabular-nums">
-                        -{commander.boneDensityLoss}% <span className="text-sm font-normal text-gray-400">/ mo</span>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="p-3 sm:p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[10px] sm:text-xs text-gray-400 font-medium">Bone Mineral Loss</span>
+                      <div className="text-2xl sm:text-3xl font-black font-mono text-amber-400 mt-1 tabular-nums">
+                        -{commander.boneDensityLoss}% <span className="text-xs sm:text-sm font-normal text-gray-400">/ mo</span>
                       </div>
-                      <p className="text-xs text-gray-400 mt-1 font-medium">Mars gravity: 0.38g</p>
+                      <p className="text-[10px] sm:text-xs text-gray-400 mt-1 font-medium">Mars gravity: 0.38g</p>
                     </div>
 
-                    <div className="p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
-                      <span className="text-xs text-gray-400 font-medium">Calcium Excretion</span>
-                      <div className="text-3xl font-black font-mono text-white mt-1 tabular-nums">
-                        240 <span className="text-sm font-normal text-gray-400">mg/d</span>
+                    <div className="p-3 sm:p-4 bg-[#18202C] rounded-xl border border-[#1F2937]">
+                      <span className="text-[10px] sm:text-xs text-gray-400 font-medium">Calcium Excretion</span>
+                      <div className="text-2xl sm:text-3xl font-black font-mono text-white mt-1 tabular-nums">
+                        240 <span className="text-xs sm:text-sm font-normal text-gray-400">mg/d</span>
                       </div>
-                      <p className="text-xs text-amber-400 mt-1 font-medium">Elevated risk of kidney stones</p>
+                      <p className="text-[10px] sm:text-xs text-amber-400 mt-1 font-medium">Elevated risk of kidney stones</p>
                     </div>
                   </div>
-                  <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl text-xs text-amber-300 leading-relaxed">
-                    ⚠️ <strong>0.38g Mars Countermeasure:</strong> NASA flight rules dictate 2.5 hours of daily resistive load (ARED) to prevent irreversible trabecular bone loss.
+                  <div className="p-3 sm:p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl text-xs text-amber-300 leading-relaxed">
+                    ⚠️ <strong>0.38g Countermeasure:</strong> NASA flight rules dictate 2.5 hours of daily resistive load (ARED) to prevent irreversible bone loss.
                   </div>
                 </div>
               )}
             </div>
 
             {/* ARED Exercise Tracker Component */}
-            <div className="mt-6 pt-5 border-t border-[#1F2937]">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2.5">
-                  <Dumbbell className="w-5 h-5 text-blue-400" />
-                  <span className="text-xs font-bold text-white uppercase tracking-wider">
-                    ARED Daily Resistive Exercise Goal
+            <div className="mt-5 pt-4 sm:pt-5 border-t border-[#1F2937]">
+              <div className="flex flex-col xs:flex-row xs:items-center justify-between mb-2.5 gap-1">
+                <div className="flex items-center gap-2">
+                  <Dumbbell className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+                  <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-wider">
+                    ARED Resistive Exercise Goal
                   </span>
                 </div>
-                <span className="text-sm font-mono font-bold text-white tabular-nums">
+                <span className="text-xs sm:text-sm font-mono font-bold text-white tabular-nums">
                   {commander.exerciseHours} / 2.5 Hours Complete
                 </span>
               </div>
 
               {/* Progress Bar */}
-              <div className="w-full bg-[#1F2937] h-4 rounded-full overflow-hidden flex p-0.5">
+              <div className="w-full bg-[#1F2937] h-3.5 sm:h-4 rounded-full overflow-hidden flex p-0.5">
                 <div 
                   className={`h-full rounded-full transition-all duration-500 ${
                     commander.exerciseHours >= 2.0 
@@ -342,8 +342,8 @@ export default function HealthTab() {
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-4 text-xs">
-                <span className="text-gray-400">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-3.5 text-xs">
+                <span className="text-gray-400 text-[11px] sm:text-xs">
                   {exercisePercent >= 100 
                     ? '🎉 Goal achieved for Sol 412! Bone matrix maintained.' 
                     : `${(2.5 - commander.exerciseHours).toFixed(1)}h remaining today to prevent bone demineralization.`}
@@ -351,7 +351,7 @@ export default function HealthTab() {
                 <button
                   onClick={handleLogExercise}
                   disabled={commander.exerciseHours >= 2.5}
-                  className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white rounded-xl font-bold transition-all shadow-md shadow-blue-900/30 cursor-pointer"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white rounded-xl font-bold transition-all shadow-md shadow-blue-900/30 cursor-pointer"
                 >
                   <Plus className="w-4 h-4" />
                   Log +30 Min
@@ -363,25 +363,25 @@ export default function HealthTab() {
       </div>
 
       {/* Row 2: Dynamic 7-Day Trends with Green Normal Range Bands */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         {/* Heart Rate Chart */}
-        <div className="bg-[#131820] border border-[#1F2937] rounded-2xl p-6">
+        <div className="bg-[#131820] border border-[#1F2937] rounded-2xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">7-Day Hemodynamics</span>
-              <h3 className="text-base font-bold text-white flex items-center gap-2 mt-1">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400">7-Day Hemodynamics</span>
+              <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2 mt-1">
                 Resting Heart Rate (BPM)
-                <span className="text-xs font-normal px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono">
-                  Target: 60-85
+                <span className="text-[10px] sm:text-xs font-normal px-2 sm:px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-mono">
+                  60-85
                 </span>
               </h3>
             </div>
             <Activity className="w-5 h-5 text-emerald-400" />
           </div>
 
-          <div className="h-60 w-full">
+          <div className="h-52 sm:h-60 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={heartRateData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <AreaChart data={heartRateData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                 <defs>
                   <linearGradient id="hrColor" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#10B981" stopOpacity={0.4}/>
@@ -400,30 +400,30 @@ export default function HealthTab() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <p className="text-xs text-gray-400 mt-3 flex items-center gap-2">
-            <span className="w-3 h-3 rounded-sm bg-emerald-500/30 inline-block border border-emerald-500/60" />
+          <p className="text-[11px] sm:text-xs text-gray-400 mt-3 flex items-center gap-2">
+            <span className="w-3 h-3 rounded-sm bg-emerald-500/30 inline-block border border-emerald-500/60 flex-shrink-0" />
             Green envelope shows astronaut flight envelope. No tachycardic anomalies detected.
           </p>
         </div>
 
         {/* Sleep Duration Chart */}
-        <div className="bg-[#131820] border border-[#1F2937] rounded-2xl p-6">
+        <div className="bg-[#131820] border border-[#1F2937] rounded-2xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-gray-400">Circadian Stability</span>
-              <h3 className="text-base font-bold text-white flex items-center gap-2 mt-1">
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-400">Circadian Stability</span>
+              <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2 mt-1">
                 Sleep Duration (Hours)
-                <span className="text-xs font-normal px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 font-mono">
-                  Target: 7.0 - 9.0h
+                <span className="text-[10px] sm:text-xs font-normal px-2 sm:px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30 font-mono">
+                  7.0 - 9.0h
                 </span>
               </h3>
             </div>
             <Moon className="w-5 h-5 text-blue-400" />
           </div>
 
-          <div className="h-60 w-full">
+          <div className="h-52 sm:h-60 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={sleepData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <AreaChart data={sleepData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                 <defs>
                   <linearGradient id="sleepColor" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.4}/>
@@ -442,8 +442,8 @@ export default function HealthTab() {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <p className="text-xs text-gray-400 mt-3 flex items-center gap-2">
-            <span className="w-3 h-3 rounded-sm bg-blue-500/30 inline-block border border-blue-500/60" />
+          <p className="text-[11px] sm:text-xs text-gray-400 mt-3 flex items-center gap-2">
+            <span className="w-3 h-3 rounded-sm bg-blue-500/30 inline-block border border-blue-500/60 flex-shrink-0" />
             Sleep dip on Sol 409-410 correlated with elevated ambient CO₂ (4.2 mmHg).
           </p>
         </div>

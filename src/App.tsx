@@ -33,7 +33,7 @@ function ToastContainer() {
   if (toasts.length === 0) return null
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-md w-full pointer-events-none">
+    <div className="fixed top-4 left-3 right-3 sm:left-auto sm:right-6 sm:top-5 z-50 flex flex-col gap-2.5 max-w-md pointer-events-none">
       {toasts.map((toast) => {
         let borderClass = 'border-blue-500/50 bg-[#111620]'
         let textTitle = 'text-blue-300'
@@ -56,7 +56,7 @@ function ToastContainer() {
         return (
           <div
             key={toast.id}
-            className={`pointer-events-auto p-4 rounded-xl border ${borderClass} transition-all duration-300 animate-in slide-in-from-bottom-5 backdrop-blur-md`}
+            className={`pointer-events-auto p-3.5 sm:p-4 rounded-xl border ${borderClass} transition-all duration-300 animate-in slide-in-from-top-4 backdrop-blur-md shadow-xl`}
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-3">
@@ -93,46 +93,70 @@ function ToastContainer() {
 function TopBar() {
   const { currentSol, solTime, owltMinutes, ppCO2 } = useStore()
   return (
-    <header className="flex items-center justify-between px-8 py-4 border-b border-[#1F2937] bg-[#0D1117] flex-shrink-0">
-      <div className="flex items-center gap-3.5">
-        <div className="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center p-1 shadow-sm shadow-blue-900/30 overflow-hidden">
-          <img src={logoIcon} alt="AstroCare Logo" className="w-full h-full object-contain filter drop-shadow" />
+    <header className="px-3.5 py-3 sm:px-6 sm:py-4 border-b border-[#1F2937] bg-[#0D1117] flex-shrink-0">
+      <div className="flex items-center justify-between gap-2 sm:gap-4">
+        {/* Brand Lockup */}
+        <div className="flex items-center gap-2.5 sm:gap-3.5 min-w-0">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center p-1 shadow-sm shadow-blue-900/30 overflow-hidden flex-shrink-0">
+            <img src={logoIcon} alt="AstroCare Logo" className="w-full h-full object-contain filter drop-shadow" />
+          </div>
+          <div className="min-w-0">
+            <h1 className="text-sm sm:text-base font-bold text-white tracking-wide flex items-center gap-1.5 sm:gap-2 truncate">
+              <span>AstroCare</span>
+              <span className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded font-mono font-normal bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap">
+                0.38G
+              </span>
+            </h1>
+            <p className="text-[10px] sm:text-[11px] text-gray-400 -mt-0.5 truncate hidden sm:block">Mars Surface Medical Operating System</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
-            AstroCare
-            <span className="text-[10px] px-2 py-0.5 rounded font-mono font-normal bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-              FLIGHT-CERTIFIED 0.38G
+
+        {/* Desktop Telemetry Badges (md+) */}
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6 text-xs">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#131820] border border-[#1F2937]">
+            <Clock className="w-4 h-4 text-blue-400" />
+            <span className="text-gray-400">Sol {currentSol}</span>
+            <span className="text-white font-mono font-bold tabular-nums text-sm">{solTime}</span>
+          </div>
+
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#131820] border border-[#1F2937]">
+            <Wifi className="w-4 h-4 text-amber-400" />
+            <span className="text-gray-400">Earth OWLT</span>
+            <span className="text-amber-400 font-mono font-bold tabular-nums text-sm">{owltMinutes} min</span>
+          </div>
+
+          <div className={`flex items-center gap-2 px-3 py-2 rounded-xl border ${ppCO2 > 4.0 ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-[#131820] border-[#1F2937]'}`}>
+            <span className="text-gray-400">Cabin ppCO₂</span>
+            <span className={`font-mono font-bold tabular-nums text-sm ${ppCO2 > 4.0 ? 'text-amber-400 font-black' : 'text-emerald-400'}`}>
+              {ppCO2} mmHg
             </span>
-          </h1>
-          <p className="text-[11px] text-gray-400 -mt-0.5">Mars Surface Medical Operating System</p>
-        </div>
-      </div>
+          </div>
 
-      <div className="flex items-center gap-6 text-xs">
-        <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#131820] border border-[#1F2937]">
-          <Clock className="w-4 h-4 text-blue-400" />
-          <span className="text-gray-400">Sol {currentSol}</span>
-          <span className="text-white font-mono font-bold tabular-nums text-sm">{solTime}</span>
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#131820] border border-[#1F2937]">
+            <WifiOff className="w-4 h-4 text-emerald-400" />
+            <span className="text-gray-300 font-medium">Store & Forward</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-sm shadow-emerald-400/80" />
+          </div>
         </div>
 
-        <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#131820] border border-[#1F2937]">
-          <Wifi className="w-4 h-4 text-amber-400" />
-          <span className="text-gray-400">Earth OWLT</span>
-          <span className="text-amber-400 font-mono font-bold tabular-nums text-sm">{owltMinutes} min</span>
-        </div>
+        {/* Mobile & Tablet Compact Telemetry Badges (< lg) */}
+        <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 text-[11px] font-mono">
+          <div className="flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg bg-[#131820] border border-[#1F2937]">
+            <Clock className="w-3.5 h-3.5 text-blue-400" />
+            <span className="text-white font-bold tabular-nums">{solTime}</span>
+          </div>
 
-        <div className={`flex items-center gap-2 px-3.5 py-2 rounded-xl border ${ppCO2 > 4.0 ? 'bg-amber-500/10 border-amber-500/40 text-amber-300' : 'bg-[#131820] border-[#1F2937]'}`}>
-          <span className="text-gray-400">Cabin ppCO₂</span>
-          <span className={`font-mono font-bold tabular-nums text-sm ${ppCO2 > 4.0 ? 'text-amber-400 font-black' : 'text-emerald-400'}`}>
-            {ppCO2} mmHg
-          </span>
-        </div>
+          <div className={`flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg border ${ppCO2 > 4.0 ? 'bg-amber-500/10 border-amber-500/40 text-amber-300 font-bold' : 'bg-[#131820] border-[#1F2937] text-emerald-400'}`}>
+            <span>{ppCO2}</span>
+            <span className="text-[9px] text-gray-400 hidden xs:inline">mmHg</span>
+          </div>
 
-        <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#131820] border border-[#1F2937]">
-          <WifiOff className="w-4 h-4 text-emerald-400" />
-          <span className="text-gray-300 font-medium">Store & Forward Vault</span>
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-sm shadow-emerald-400/80" />
+          <div className="flex items-center gap-1 px-2 sm:px-2.5 py-1 rounded-lg bg-[#131820] border border-[#1F2937] text-amber-400">
+            <Wifi className="w-3.5 h-3.5" />
+            <span className="font-bold">{owltMinutes}m</span>
+          </div>
+
+          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-0.5" title="Vault Online" />
         </div>
       </div>
     </header>
@@ -142,7 +166,7 @@ function TopBar() {
 function Sidebar() {
   const { activeTab, setActiveTab, emergencyActive } = useStore()
   return (
-    <nav className="w-64 flex-shrink-0 border-r border-[#1F2937] bg-[#0D1117] flex flex-col py-6 px-4 gap-2">
+    <nav className="hidden md:flex w-64 flex-shrink-0 border-r border-[#1F2937] bg-[#0D1117] flex-col py-6 px-4 gap-2">
       <div className="px-3 pb-3 mb-1 border-b border-[#1F2937]/70">
         <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
           Operational Subsystems
@@ -156,7 +180,7 @@ function Sidebar() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left
+            className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer
               ${active
                 ? isEmergency
                   ? 'bg-red-500/20 text-red-300 border border-red-500/50 shadow-md shadow-red-950/40'
@@ -190,20 +214,53 @@ function Sidebar() {
   )
 }
 
+function BottomNav() {
+  const { activeTab, setActiveTab, emergencyActive } = useStore()
+  return (
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0D1117]/95 backdrop-blur-lg border-t border-[#1F2937] px-2 py-1.5 flex items-center justify-around safe-area-bottom shadow-2xl shadow-black">
+      {tabs.map(tab => {
+        const active = activeTab === tab.id
+        const isEmergency = tab.id === 'emergency'
+        return (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex flex-col items-center justify-center py-1.5 px-3 rounded-xl transition-all cursor-pointer min-w-[68px] ${
+              active
+                ? isEmergency
+                  ? 'bg-red-500/25 text-red-300 border border-red-500/50 shadow-md shadow-red-950/40'
+                  : 'bg-blue-500/20 text-blue-300 border border-blue-500/40 shadow-sm shadow-blue-950/30'
+                : 'text-gray-400 hover:text-gray-200 border border-transparent'
+            } ${isEmergency && emergencyActive ? 'animate-pulse ring-2 ring-red-500' : ''}`}
+          >
+            <tab.icon className={`w-5 h-5 mb-0.5 ${
+              active ? (isEmergency ? 'text-red-400' : 'text-blue-400') : 'text-gray-400'
+            }`} />
+            <span className="text-[10px] font-semibold tracking-tight">
+              {tab.id === 'health' ? 'Health' : tab.id === 'crew' ? 'Crew' : tab.id === 'doctor' ? 'Doctor' : 'SOS'}
+            </span>
+          </button>
+        )
+      })}
+    </nav>
+  )
+}
+
 export default function App() {
   const { activeTab } = useStore()
   return (
-    <div className="h-screen flex flex-col overflow-hidden font-sans bg-[#0B0E14]">
+    <div className="h-[100dvh] flex flex-col overflow-hidden font-sans bg-[#0B0E14]">
       <TopBar />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto p-8 lg:p-10">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-10 pb-24 md:pb-10">
           {activeTab === 'health' && <HealthTab />}
           {activeTab === 'crew' && <CrewTab />}
           {activeTab === 'doctor' && <DoctorTab />}
           {activeTab === 'emergency' && <EmergencyTab />}
         </main>
       </div>
+      <BottomNav />
       <ToastContainer />
     </div>
   )
