@@ -11,6 +11,15 @@ Currently, two official plugins are available:
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
+
+AI & Tools Disclosure: Built using React, Tailwind CSS, and IndexedDB. Assisted by Antigravity IDE, GitHub Copilot, and Gemini for code scaffolding, presentation structuring, and icon vector generation. All clinical rules are 100% deterministic based on NASA-STD-3001 and CSA guidelines.
+
+
+## 👥 Team & Contributions
+Mohamed Amine : Architecture , Frontend , UI/UX & Presentation
+Med Abakachou : NASA/CSA Data Research & Clinical Logic
+
+
 ## Expanding the Oxlint configuration
 
 If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
