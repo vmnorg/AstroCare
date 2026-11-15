@@ -4,7 +4,6 @@ import {
   Users, 
   Radio, 
   ShieldAlert, 
-  Satellite, 
   Wifi, 
   WifiOff, 
   Clock, 
@@ -14,6 +13,8 @@ import {
   Info, 
   AlertOctagon 
 } from 'lucide-react'
+import logoIcon from './assets/logo-icon-blue.png'
+import logoFull from './assets/logo.png'
 import HealthTab from './tabs/HealthTab'
 import CrewTab from './tabs/CrewTab'
 import DoctorTab from './tabs/DoctorTab'
@@ -94,8 +95,8 @@ function TopBar() {
   return (
     <header className="flex items-center justify-between px-8 py-4 border-b border-[#1F2937] bg-[#0D1117] flex-shrink-0">
       <div className="flex items-center gap-3.5">
-        <div className="w-9 h-9 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-          <Satellite className="w-5 h-5 text-blue-400" />
+        <div className="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center p-1 shadow-sm shadow-blue-900/30 overflow-hidden">
+          <img src={logoIcon} alt="AstroCare Logo" className="w-full h-full object-contain filter drop-shadow" />
         </div>
         <div>
           <h1 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
@@ -171,7 +172,10 @@ function Sidebar() {
         )
       })}
 
-      <div className="mt-auto p-4 rounded-xl bg-[#131820] border border-[#1F2937] space-y-1.5">
+      <div className="mt-auto p-4 rounded-xl bg-[#131820] border border-[#1F2937] space-y-2">
+        <div className="flex items-center justify-center pb-2.5 border-b border-[#1F2937]/70">
+          <img src={logoFull} alt="AstroCare" className="h-7 object-contain opacity-90 filter drop-shadow" />
+        </div>
         <div className="flex items-center justify-between">
           <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Ares Station Alpha</span>
           <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
